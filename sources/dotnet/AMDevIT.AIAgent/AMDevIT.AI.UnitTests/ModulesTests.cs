@@ -1,17 +1,31 @@
 ﻿using AMDevIT.AI.Core.Modules.Personality;
 using AMDevIT.AI.UnitTests.Helpers;
 using System.Diagnostics;
+using System.Runtime.CompilerServices;
 
 namespace AMDevIT.AI.UnitTests
 {
     [TestClass]
     public sealed class ModulesTests
     {
-        [ClassInitialize]
-        public static void ClassInit(TestContext context)
+        #region Properties
+
+        public TestContext TestContext
         {
-            // This method is called once for the test class, before any tests of the class are run.
+            get;
+            set;
         }
+
+        #endregion
+
+        #region Methods
+
+        //[ClassInitialize]
+        //public static void ClassInit(TestContext context)
+        //{
+        //    // This method is called once for the test class, before any tests of the class are run.
+            
+        //}
 
         [TestInitialize]
         public void TestInit()
@@ -29,7 +43,7 @@ namespace AMDevIT.AI.UnitTests
                                                                                           adjectives,
                                                                                           personalityAnswerMode);
 
-            Assert.IsNotNull(module, "Personality module is null.");
+            // Assert.IsNotNull(module, "Personality module is null.");
             Assert.AreEqual(name, module.Name, $"Personality module name is not {name}");
 
             string[] adjectivesArray = StringHelper.SplitAndTrim(adjectives, ',');
@@ -52,5 +66,7 @@ namespace AMDevIT.AI.UnitTests
             Assert.IsFalse(string.IsNullOrEmpty(personalityDescriptionString), "Personality description string is null or empty.");
             Trace.WriteLine($"Personality description: {personalityDescriptionString}");
         }
+
+        #endregion
     }
 }

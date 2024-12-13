@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
-VisualStudioVersion = 17.12.35527.113 d17.12
+VisualStudioVersion = 17.12.35527.113
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AMDevIT.AI.Core", "AMDevIT.AI.Core\AMDevIT.AI.Core.csproj", "{595EC4AB-862B-4EB7-8344-54BC127B7ED6}"
 EndProject
@@ -12,6 +12,10 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{0E8C3BFA-1F57-4634-A55C-5B1EE3174CED}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AMDevIT.AI.UnitTests", "AMDevIT.AI.UnitTests\AMDevIT.AI.UnitTests.csproj", "{EF2A0FD3-2E8F-4776-9D88-91A6F612FC9A}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Applications", "Applications", "{A9E6CCE1-D780-4CEE-A289-59A234C87A1C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AMDevIT.AI.App.WPF", "AMDevIT.AI.App.WPF\AMDevIT.AI.App.WPF.csproj", "{2EB5ACE1-9AC0-4417-B81B-ECD99368E900}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -31,6 +35,10 @@ Global
 		{EF2A0FD3-2E8F-4776-9D88-91A6F612FC9A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{EF2A0FD3-2E8F-4776-9D88-91A6F612FC9A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{EF2A0FD3-2E8F-4776-9D88-91A6F612FC9A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2EB5ACE1-9AC0-4417-B81B-ECD99368E900}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2EB5ACE1-9AC0-4417-B81B-ECD99368E900}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2EB5ACE1-9AC0-4417-B81B-ECD99368E900}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2EB5ACE1-9AC0-4417-B81B-ECD99368E900}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -39,5 +47,6 @@ Global
 		{595EC4AB-862B-4EB7-8344-54BC127B7ED6} = {6970A9AD-D159-493D-86FD-F2E3D2C7F895}
 		{1CF58B39-E128-448F-8290-0F5E890B5256} = {6970A9AD-D159-493D-86FD-F2E3D2C7F895}
 		{EF2A0FD3-2E8F-4776-9D88-91A6F612FC9A} = {0E8C3BFA-1F57-4634-A55C-5B1EE3174CED}
+		{2EB5ACE1-9AC0-4417-B81B-ECD99368E900} = {A9E6CCE1-D780-4CEE-A289-59A234C87A1C}
 	EndGlobalSection
 EndGlobal
