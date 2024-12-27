@@ -4,6 +4,22 @@
     <TargetFramework>net9.0</TargetFramework>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
+    <Title>AmDEV.IT AI Core</Title>
+    <Authors>Alessandro Morvillo, Alessio Balloni</Authors>
+    <Company>AMDev.IT</Company>
+    <Product>AmDEV.IT AI </Product>
+    <Copyright>AMDev.IT 2024</Copyright>
+    <PackageProjectUrl>https://github.com/AMDevIT/AIAgent</PackageProjectUrl>
+    <PackageIcon>coreicon_128.png</PackageIcon>
+    <PackageLicenseFile>LICENSE</PackageLicenseFile>
+    <PackageTags>AI;AI Agent;ML</PackageTags>
+    <RepositoryUrl>https://github.com/AMDevIT/AIAgent.git</RepositoryUrl>
+    <PackageReadmeFile>README.MD</PackageReadmeFile>
+    <Description>Core classes and interfaces for AI agent easy implementation.</Description>
+    <AssemblyVersion>0.0.500.0</AssemblyVersion>
+    <FileVersion>$(AssemblyVersion)</FileVersion>
+    <Version>$(AssemblyVersion)</Version>
+    <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
   </PropertyGroup>
 
   <ItemGroup>
@@ -24,6 +40,21 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>PersonalityText.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="coreicon_128.png">
+      <Pack>True</Pack>
+      <PackagePath>\</PackagePath>
+    </None>
+    <None Update="LICENSE">
+      <Pack>True</Pack>
+      <PackagePath>\</PackagePath>
+    </None>
+    <None Update="README.MD">
+      <Pack>True</Pack>
+      <PackagePath>\</PackagePath>
+    </None>
   </ItemGroup>
 
 </Project>

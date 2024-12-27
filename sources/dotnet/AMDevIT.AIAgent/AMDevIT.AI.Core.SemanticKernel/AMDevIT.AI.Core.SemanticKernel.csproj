@@ -5,6 +5,21 @@
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
     <RootNamespace>$(MSBuildProjectName.Replace(" ", "_").Substring(0, $(MSBuildProjectName.LastIndexOf('.'))))</RootNamespace>
+    <Title>AmDEV.IT AI Core Semantic Kernel library</Title>    
+    <Authors>Alessandro Morvillo, Alessio Balloni</Authors>
+    <Company>AMDev.IT</Company>
+    <Product>AmDEV.IT AI </Product>
+    <Description>Semantic Kernel implementation of AI Core classes and interfaces. This package allows the use of Semantic Kernel plugin as AI modules for a quick integration in the agent.</Description>
+    <Copyright>AMDev.IT 2024</Copyright>
+    <PackageProjectUrl>https://github.com/AMDevIT/AIAgent</PackageProjectUrl>
+    <PackageIcon>coresemantickernelicon_128.png</PackageIcon>
+    <PackageReadmeFile>README.MD</PackageReadmeFile>
+    <RepositoryUrl>https://github.com/AMDevIT/AIAgent.git</RepositoryUrl>
+    <PackageTags>AI;Semantic kernel;AI Agent;ML</PackageTags>
+	<AssemblyVersion>0.0.500.0</AssemblyVersion>
+	<FileVersion>$(AssemblyVersion)</FileVersion>
+	<Version>$(AssemblyVersion)</Version>
+    <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
   </PropertyGroup>
 
   <ItemGroup>
@@ -13,11 +28,22 @@
     <PackageReference Include="Microsoft.SemanticKernel" Version="1.32.0" />
     <PackageReference Include="Microsoft.SemanticKernel.Connectors.OpenAI" Version="1.32.0" />
     <PackageReference Include="Microsoft.SemanticKernel.Core" Version="1.32.0" />
-    <PackageReference Include="OpenAI" Version="2.1.0-beta.2" />
+    <PackageReference Include="OpenAI" Version="2.1.0" />
   </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\AMDevIT.AI.Core\AMDevIT.AI.Core.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="coresemantickernelicon_128.png">
+      <Pack>True</Pack>
+      <PackagePath>\</PackagePath>
+    </None>
+    <None Update="README.MD">
+      <Pack>True</Pack>
+      <PackagePath>\</PackagePath>
+    </None>
   </ItemGroup>
 
 </Project>
