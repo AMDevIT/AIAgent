@@ -7,6 +7,11 @@ namespace AMDevIT.AI.Core.Modules
     {
         #region Properties      
 
+        bool RegisterKernelFunctions
+        {
+            get;
+        }
+
         #endregion
 
         #region Methods

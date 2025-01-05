@@ -1,31 +1,49 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
-  <PropertyGroup>
-    <OutputType>WinExe</OutputType>
-    <TargetFramework>net9.0-windows</TargetFramework>
-    <Nullable>enable</Nullable>
-    <ImplicitUsings>enable</ImplicitUsings>
-    <UseWPF>true</UseWPF>
-    <UserSecretsId>453fd9c6-1a85-4bd8-9a7b-d0ef0fdea53c</UserSecretsId>
-  </PropertyGroup>
+	<PropertyGroup>
+		<OutputType>WinExe</OutputType>
+		<TargetFramework>net9.0-windows</TargetFramework>
+		<Nullable>enable</Nullable>
+		<ImplicitUsings>enable</ImplicitUsings>
+		<UseWPF>true</UseWPF>
+		<UserSecretsId>453fd9c6-1a85-4bd8-9a7b-d0ef0fdea53c</UserSecretsId>
+	</PropertyGroup>
 
-  <ItemGroup>
-    <PackageReference Include="CommunityToolkit.Mvvm" Version="8.4.0" />
-    <PackageReference Include="Microsoft.Extensions.Configuration" Version="9.0.0" />
-    <PackageReference Include="Microsoft.Extensions.Configuration.Binder" Version="9.0.0" />
-    <PackageReference Include="Microsoft.Extensions.Configuration.Json" Version="9.0.0" />
-    <PackageReference Include="Microsoft.Extensions.Configuration.UserSecrets" Version="9.0.0" />
-    <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="9.0.0" />
-    <PackageReference Include="Microsoft.Extensions.Logging" Version="9.0.0" />
-    <PackageReference Include="Microsoft.Extensions.Logging.Configuration" Version="9.0.0" />
-    <PackageReference Include="Microsoft.Extensions.Logging.Console" Version="9.0.0" />
-    <PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="9.0.0" />
-    <PackageReference Include="Microsoft.Xaml.Behaviors.Wpf" Version="1.1.135" />
-  </ItemGroup>
+	<ItemGroup>
+		<None Remove="appsettings.Development.json" />
+		<None Remove="appsettings.json" />
+	</ItemGroup>
 
-  <ItemGroup>
-    <ProjectReference Include="..\AMDevIT.AI.Core.SemanticKernel\AMDevIT.AI.Core.SemanticKernel.csproj" />
-    <ProjectReference Include="..\AMDevIT.AI.Core\AMDevIT.AI.Core.csproj" />
-  </ItemGroup>
+	<ItemGroup>
+		<Content Include="appsettings.Development.json" />
+		<Content Include="appsettings.json" />
+	</ItemGroup>
+
+	<ItemGroup Condition="'$(Configuration)' == 'Debug'">
+		<Content Include="appsettings.Development.json" CopyToOutputDirectory="PreserveNewest" />
+	</ItemGroup>
+
+	<ItemGroup Condition="'$(Configuration)' != 'Debug'">
+		<Content Include="appsettings.json" CopyToOutputDirectory="PreserveNewest" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<PackageReference Include="CommunityToolkit.Mvvm" Version="8.4.0" />
+		<PackageReference Include="Microsoft.Extensions.Configuration" Version="9.0.0" />
+		<PackageReference Include="Microsoft.Extensions.Configuration.Binder" Version="9.0.0" />
+		<PackageReference Include="Microsoft.Extensions.Configuration.Json" Version="9.0.0" />
+		<PackageReference Include="Microsoft.Extensions.Configuration.UserSecrets" Version="9.0.0" />
+		<PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="9.0.0" />
+		<PackageReference Include="Microsoft.Extensions.Logging" Version="9.0.0" />
+		<PackageReference Include="Microsoft.Extensions.Logging.Configuration" Version="9.0.0" />
+		<PackageReference Include="Microsoft.Extensions.Logging.Console" Version="9.0.0" />
+		<PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="9.0.0" />
+		<PackageReference Include="Microsoft.Xaml.Behaviors.Wpf" Version="1.1.135" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<ProjectReference Include="..\AMDevIT.AI.Core.SemanticKernel\AMDevIT.AI.Core.SemanticKernel.csproj" />
+		<ProjectReference Include="..\AMDevIT.AI.Core\AMDevIT.AI.Core.csproj" />
+	</ItemGroup>
 
 </Project>

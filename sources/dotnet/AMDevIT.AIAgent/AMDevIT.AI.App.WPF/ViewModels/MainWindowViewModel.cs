@@ -1,9 +1,12 @@
 ﻿using AMDevIT.AI.App.WPF.Models;
+using AMDevIT.AI.App.WPF.Modules;
+using AMDevIT.AI.App.WPF.Runtime.Messaging;
 using AMDevIT.AI.Core;
 using AMDevIT.AI.Core.Modules.Personality;
 using AMDevIT.AI.Core.Modules.Utils;
 using AMDevIT.AI.Core.Providers.OpenAI;
 using CommunityToolkit.Mvvm.Input;
+using CommunityToolkit.Mvvm.Messaging;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
 using System.Collections.ObjectModel;
@@ -11,7 +14,7 @@ using System.Collections.ObjectModel;
 namespace AMDevIT.AI.App.WPF.ViewModels;
 
 public partial class MainWindowViewModel(ILogger<MainWindowViewModel> logger,
-                                      IConfiguration configuration)
+                                         IConfiguration configuration)
  : ViewModelBase(logger, configuration), IAViewModel
 {
     #region Fields
@@ -91,7 +94,7 @@ public partial class MainWindowViewModel(ILogger<MainWindowViewModel> logger,
             personalityAnswerMode = PersonalityAnswerMode.Neutral;
         else
             if (!Enum.TryParse(personality, true, out personalityAnswerMode))
-            personalityAnswerMode = PersonalityAnswerMode.Neutral;
+            personalityAnswerMode = PersonalityAnswerMode.Neutral;       
 
 
         personalityModule = PersonalityAIModule.FromCommaSeparatedAdjectives(personalityName,
@@ -106,8 +109,29 @@ public partial class MainWindowViewModel(ILogger<MainWindowViewModel> logger,
             this.Logger?.LogWarning("AI Model ID is missing from configuration");
 
         semanticKernelProviderBuilder.AddModule(new TimeAIModule(this.Logger));
+        try
+        {
+            semanticKernelProviderBuilder.AddModule(new TestSemanticKernelModule(this.Logger));
+        }
+        catch(Exception exc)
+        {
+            this.Logger?.LogError(exc, "Error adding TestSemanticKernelModule");
+        }
 
-        semanticKernelProvider = semanticKernelProviderBuilder.BuildOpenAISemanticKernelAIProvider();
+        try
+        {
+            semanticKernelProvider = semanticKernelProviderBuilder.BuildOpenAISemanticKernelAIProvider();
+        }
+        catch(Exception exc)
+        {
+            this.Logger?.LogError(exc, "Error building OpenAI Semantic Kernel Provider");
+            ShowTextActionMessage textActionMessage = new($"Cannot initialzie AI Provider. Error type: {exc.GetType().Name}",
+                                                          "Error", 
+                                                          MessageDialogType.Error);
+            WeakReferenceMessenger.Default.Send(textActionMessage);
+            return;
+        }
+
         this.SemanticProvider = semanticKernelProvider;
     }
 
@@ -121,14 +145,36 @@ public partial class MainWindowViewModel(ILogger<MainWindowViewModel> logger,
             return;
         }
 
-        if (this.SemanticProvider.Started == false)
+        try
         {
-            this.Logger.LogWarning("Semantic Provider is not started");
-            this.SemanticProvider.Start();
+            if (this.SemanticProvider.Started == false)
+            {
+                this.Logger.LogWarning("Semantic Provider is not started");
+                this.SemanticProvider.Start();
+            }
+        }
+        catch (Exception exc)
+        {
+            this.Logger?.LogError(exc, "Error starting Semantic Provider");
+            ShowTextActionMessage textActionMessage = new($"Cannot start AI Provider. Error type: {exc.GetType().Name}", 
+                                                          "Error", 
+                                                          MessageDialogType.Error);
+            WeakReferenceMessenger.Default.Send(textActionMessage);
         }
 
-        greetingMessage = await this.SemanticProvider.RequestGreetingMessageAsync(cancellationToken);
-        this.ChatMessages.Add(new ChatMessage { Text = greetingMessage, IsSentByMe = false, AvatarColor = "Salmon" });
+        try
+        {
+            greetingMessage = await this.SemanticProvider.RequestGreetingMessageAsync(cancellationToken);
+            this.ChatMessages.Add(new ChatMessage { Text = greetingMessage, IsSentByMe = false, AvatarColor = "Salmon" });
+        }
+        catch(Exception exc)
+        {
+            this.Logger?.LogError(exc, "Error sending message to the AI using Semantic Provider");
+            ShowTextActionMessage textActionMessage = new($"Cannot send requested message to the AI Provider. Error type: {exc.GetType().Name}",
+                                                          "Warning",
+                                                          MessageDialogType.Warning);
+            WeakReferenceMessenger.Default.Send(textActionMessage);
+        }
     }
 
     private bool CanSendMessage()
