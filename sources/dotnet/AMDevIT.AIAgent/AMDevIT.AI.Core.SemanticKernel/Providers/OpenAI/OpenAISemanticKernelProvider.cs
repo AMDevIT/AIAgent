@@ -4,6 +4,7 @@ using Microsoft.Extensions.Logging;
 using Microsoft.SemanticKernel;
 using Microsoft.SemanticKernel.ChatCompletion;
 using Microsoft.SemanticKernel.Connectors.OpenAI;
+using System.Diagnostics;
 
 namespace AMDevIT.AI.Core.Providers.OpenAI
 {
@@ -16,90 +17,16 @@ namespace AMDevIT.AI.Core.Providers.OpenAI
 
         #endregion
 
-        #region Fields        
+        #region Methods           
 
-        private ChatHistory? chatHistory = null;
-        private Kernel? kernel = null;
-        private IChatCompletionService? chatCompletionService = null;
-
-        #endregion
-
-        #region Properties
-
-        public override bool Started
+        override protected Kernel InitializeKernelWithAIService(IKernelBuilder kernelBuilder)
         {
-            get
-            {
-                return this.kernel != null;
-            }
-        }
-
-        #endregion
-
-        #region Methods      
-
-        public override void Start()
-        {
-            IKernelBuilder kernelBuilder = Kernel.CreateBuilder();
-            IProviderAIModule[] initChatModules;
-            IProviderAIModule[] nonInitModules;
-
-            this.AddDefaultKernelPlugins(kernelBuilder);
-
-
-            this.chatHistory = [];
-
-            initChatModules = this.Modules.GetInitChatModules()
-                                          .ToArray();
-
-            for (int i = 0; i < initChatModules.Length; i++)
-            {
-                IInitAgentAIModule initChatModule = (IInitAgentAIModule)initChatModules[i];
-                string initChatMessage = initChatModule.BuildInitAgentMessage();
-
-                this.Logger?.LogTrace("Adding init chat message {initChatMessage} to chat history",
-                                      initChatMessage);
-                this.chatHistory.AddSystemMessage(initChatMessage);
-            }
-
-            nonInitModules = this.Modules.GetNonInitChatModules()
-                                         .ToArray();
-
-
-            for (int i = 0; i < nonInitModules.Length; i++)
-            {
-                IProviderAIModule nonInitModule = nonInitModules[i];
-                this.Logger?.LogTrace("Adding non-init chat module {module} to kernel builder",
-                                      nonInitModule.GetType().Name);
-
-                switch (nonInitModule)
-                {
-                    case ISemanticKernelAIModule semanticKernelModule:
-                        this.Logger?.LogInformation("Current module {module} is of type semantic kernel. " +
-                                                    "Can be added directly to the semantic kernel builder.",
-                                                    semanticKernelModule.GetType().Name);
-                        semanticKernelModule.AddToKernelBuilder(kernelBuilder);
-                        break;
-
-                    default:
-                        this.Logger?.LogWarning("Current module {module} is not of a supported type. " +
-                                                "Trying to add it as a service to the kernel builder.",
-                                                nonInitModule.GetType().Name);
-                        kernelBuilder.Services.AddSingleton(nonInitModule.GetType(), nonInitModule);
-                        break;
-                }
-            }
+            Kernel kernel;
 
             kernelBuilder.AddOpenAIChatCompletion(this.Model, this.APIKey);
             kernel = kernelBuilder.Build();
 
-            this.chatCompletionService = this.kernel.GetRequiredService<IChatCompletionService>();
-            this.Logger?.LogInformation("OpenAI Semantic Kernel Provider started.");
-        }
-
-        public override void Stop()
-        {
-
+            return kernel;
         }
 
         public override async Task<string> RequestGreetingMessageAsync(CancellationToken cancellationToken = default)

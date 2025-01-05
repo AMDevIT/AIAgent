@@ -11,19 +11,22 @@ namespace AMDevIT.AI.Core.Modules.Utils
     {
         #region Consts
 
-        protected const string CurrentModuleName = "TimeModule";
+        protected const string TimeModuleName = "TimeModule";
 
         #endregion
 
         #region Properties
 
-
         public override string ModuleName
         {
-            get;
-            protected set;
-        } = CurrentModuleName;
-      
+            get => TimeModuleName;
+        }
+
+        public override bool RegisterKernelFunctions
+        {
+            get => true;
+        }
+
         #endregion
 
         #region .ctor

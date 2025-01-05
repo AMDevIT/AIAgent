@@ -16,7 +16,7 @@
     <PackageReadmeFile>README.MD</PackageReadmeFile>
     <RepositoryUrl>https://github.com/AMDevIT/AIAgent.git</RepositoryUrl>
     <PackageTags>AI;Semantic kernel;AI Agent;ML</PackageTags>
-	<AssemblyVersion>0.0.500.0</AssemblyVersion>
+	<AssemblyVersion>0.0.530.0</AssemblyVersion>
 	<FileVersion>$(AssemblyVersion)</FileVersion>
 	<Version>$(AssemblyVersion)</Version>
     <GeneratePackageOnBuild>True</GeneratePackageOnBuild>

@@ -1,10 +1,10 @@
 ﻿using Microsoft.Extensions.Logging;
-using Microsoft.SemanticKernel;
 
 namespace AMDevIT.AI.Core.Modules
 {
-    public abstract class SemanticKernelAIModule(ILogger? logger)
-       : ISemanticKernelAIModule
+    [UniqueModule]
+    public abstract class InitAgentAIModule(ILogger? logger)
+        : IInitAgentAIModule
     {
         #region Properties
 
@@ -19,22 +19,11 @@ namespace AMDevIT.AI.Core.Modules
             get;
         }
 
-        public abstract bool RegisterKernelFunctions
-        {
-            get;
-        }
-
-        #endregion        
+        #endregion
 
         #region Methods
 
-        public virtual IKernelBuilderPlugins AddToKernelBuilder(IKernelBuilder kernelBuilder)
-        {
-            this.Logger?.LogTrace("Adding plugin {moduleName} to kernel builder", 
-                                  this.ModuleName);
-            IKernelBuilderPlugins plugins = kernelBuilder.Plugins.AddFromObject(this);
-            return plugins;
-        }
+        public abstract string BuildInitAgentMessage();
 
         public virtual void OnStart(IProviderStateParameters? stateParameters)
         {

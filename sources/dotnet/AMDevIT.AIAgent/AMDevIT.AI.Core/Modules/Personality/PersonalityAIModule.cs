@@ -56,8 +56,8 @@ namespace AMDevIT.AI.Core.Modules.Personality
         #region .ctor
 
         public PersonalityAIModule(string name,
-                                 string[] adjectives,
-                                 ILogger? logger)
+                                   string[] adjectives,
+                                   ILogger? logger)
         {
             this.Name = name;
             this.Adjectives = adjectives;
@@ -65,9 +65,9 @@ namespace AMDevIT.AI.Core.Modules.Personality
         }
 
         public PersonalityAIModule(string name,
-                                 string[] adjectives,
-                                 PersonalityAnswerMode answerMode,
-                                 ILogger? logger)
+                                   string[] adjectives,
+                                   PersonalityAnswerMode answerMode,
+                                   ILogger? logger)
         {
             this.Name = name;
             this.Adjectives = adjectives;
@@ -110,6 +110,18 @@ namespace AMDevIT.AI.Core.Modules.Personality
         public string BuildInitAgentMessage()
         {
             return this.BuildPersonalityMessage();
+        }
+
+        public void OnStart(IProviderStateParameters? stateParameters)
+        {
+            this.Logger?.LogInformation("Personality module {moduleName} started",
+                                      this.ModuleName);
+        }
+
+        public void OnStop(IProviderStateParameters? stateParameters)
+        {
+            this.Logger?.LogInformation("Personality module {moduleName} stopped",
+                                      this.ModuleName);
         }
 
         public static PersonalityAIModule FromCommaSeparatedAdjectives(string name,
