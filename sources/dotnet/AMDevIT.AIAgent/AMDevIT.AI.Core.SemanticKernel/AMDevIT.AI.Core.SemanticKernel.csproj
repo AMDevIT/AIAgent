@@ -25,6 +25,29 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="coresemantickernelicon_128.png" />
+    <None Remove="README.MD" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="coresemantickernelicon_128.png">
+      <Pack>True</Pack>
+      <PackagePath>\</PackagePath>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="LICENSE">
+      <Pack>True</Pack>
+      <PackagePath>\</PackagePath>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="README.MD">
+      <Pack>True</Pack>
+      <PackagePath>\</PackagePath>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="9.0.4" />
     <PackageReference Include="Microsoft.Extensions.Logging" Version="9.0.4" />
     <PackageReference Include="Microsoft.SemanticKernel" Version="1.47.0" />
@@ -37,15 +60,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <None Update="coresemantickernelicon_128.png">
-      <Pack>True</Pack>
-      <PackagePath>\</PackagePath>
-    </None>
     <None Update="LICENSE">
-      <Pack>True</Pack>
-      <PackagePath>\</PackagePath>
-    </None>
-    <None Update="README.MD">
       <Pack>True</Pack>
       <PackagePath>\</PackagePath>
     </None>
