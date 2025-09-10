@@ -51,8 +51,9 @@ jobs:
         fi
         echo "Building: $TARGET"        
     
-        dotnet restore "$TARGET" -p:Configuration=Release -p:TargetFramework=net9.0    
-        dotnet build "$TARGET" -c Release -f net9.0 --no-restore
+        dotnet restore "$TARGET" -p:Configuration=Release -p:TargetFramework=net9.0 -p:CodeQLRun=true
+        dotnet build "$TARGET" -c Release -f net9.0 --no-restore -p:CodeQLRun=true
+
     
 
     - name: Perform CodeQL Analysis
