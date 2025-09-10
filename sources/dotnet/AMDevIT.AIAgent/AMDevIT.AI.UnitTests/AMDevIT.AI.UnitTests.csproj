@@ -1,8 +1,4 @@
-<Project Sdk="MSTest.Sdk/3.6.1">
-	<PropertyGroup Condition="'$(CodeQLRun)' == 'true'">
-		<IsExcludedFromBuild>true</IsExcludedFromBuild>
-	</PropertyGroup>
-
+﻿<Project Sdk="MSTest.Sdk/3.6.1">
   <PropertyGroup>
     <TargetFramework>net9.0</TargetFramework>
     <LangVersion>latest</LangVersion>

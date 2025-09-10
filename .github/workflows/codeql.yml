@@ -51,8 +51,8 @@ jobs:
         fi
         echo "Building: $TARGET"        
     
-        dotnet restore "$TARGET" -p:Configuration=Release -p:TargetFramework=net9.0-windows -p:CodeQLRun=true
-        dotnet build "$TARGET" -c Release -f net9.0-windows --no-restore -p:CodeQLRun=true
+        dotnet restore "$TARGET" -p:Configuration=CodeQL -p:TargetFramework=net9.0
+        dotnet build "$TARGET" -c CodeQL -f net9.0 --no-restore
 
     
 

@@ -1,8 +1,4 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
-	<PropertyGroup Condition="'$(CodeQLRun)' == 'true'">
-		<IsExcludedFromBuild>true</IsExcludedFromBuild>
-	</PropertyGroup>
-
 	<PropertyGroup>
 		<OutputType>WinExe</OutputType>
 		<TargetFramework>net9.0-windows</TargetFramework>
