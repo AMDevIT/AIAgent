@@ -27,12 +27,6 @@ jobs:
       uses: actions/setup-dotnet@v4
       with:
         dotnet-version: | 
-          4.6.2
-          4.7
-          4.7.1
-          4.7.2
-          4.8
-          4.8.1
           8
           9
 
@@ -57,8 +51,8 @@ jobs:
         fi
         echo "Building: $TARGET"        
     
-        dotnet restore "$TARGET" -p:Configuration=Release -p:TargetFramework=net8.0    
-        dotnet build "$TARGET" -c Release -f net8.0 --no-restore
+        dotnet restore "$TARGET" -p:Configuration=Release -p:TargetFramework=net9.0    
+        dotnet build "$TARGET" -c Release -f net9.0 --no-restore
     
 
     - name: Perform CodeQL Analysis
