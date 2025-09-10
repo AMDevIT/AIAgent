@@ -37,7 +37,7 @@ jobs:
         build-mode: ${{ matrix.build-mode }}
 
     
-    - name: Build (manual, net8.0)
+    - name: Build (manual, net9.0)
       if: matrix.build-mode == 'manual'
       shell: bash
       run: |
@@ -51,8 +51,8 @@ jobs:
         fi
         echo "Building: $TARGET"        
     
-        dotnet restore "$TARGET" -p:Configuration=Release -p:TargetFramework=net9.0 -p:CodeQLRun=true
-        dotnet build "$TARGET" -c Release -f net9.0 --no-restore -p:CodeQLRun=true
+        dotnet restore "$TARGET" -p:Configuration=Release -p:TargetFramework=net9.0-windows -p:CodeQLRun=true
+        dotnet build "$TARGET" -c Release -f net9.0-windows --no-restore -p:CodeQLRun=true
 
     
 
