@@ -16,7 +16,7 @@
     <RepositoryUrl>https://github.com/AMDevIT/AIAgent.git</RepositoryUrl>
     <PackageReadmeFile>README.MD</PackageReadmeFile>
     <Description>Core classes and interfaces for AI agent easy implementation.</Description>
-    <AssemblyVersion>0.0.540.72</AssemblyVersion>
+    <AssemblyVersion>0.0.540.102</AssemblyVersion>
     <FileVersion>$(AssemblyVersion)</FileVersion>
     <Version>$(AssemblyVersion)</Version>
     <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
@@ -50,7 +50,7 @@
   <ItemGroup>
     <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="10.0.3" />
     <PackageReference Include="Microsoft.Extensions.Logging" Version="10.0.3" />
-    <PackageReference Include="OpenAI" Version="2.8.0" />
+    <PackageReference Include="OpenAI" Version="2.9.1" />
   </ItemGroup>
 
   <ItemGroup>

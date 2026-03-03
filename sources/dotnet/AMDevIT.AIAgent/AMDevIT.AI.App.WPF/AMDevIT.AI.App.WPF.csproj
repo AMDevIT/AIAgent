@@ -6,6 +6,9 @@
 		<ImplicitUsings>enable</ImplicitUsings>
 		<UseWPF>true</UseWPF>
 		<UserSecretsId>453fd9c6-1a85-4bd8-9a7b-d0ef0fdea53c</UserSecretsId>
+		<AssemblyVersion>1.0.0.30</AssemblyVersion>
+		<FileVersion>$(AssemblyVersion)</FileVersion>
+		<Version>$(AssemblyVersion)</Version>
 	</PropertyGroup>
 
 	<ItemGroup>
@@ -37,7 +40,7 @@
 		<PackageReference Include="Microsoft.Extensions.Logging.Configuration" Version="10.0.3" />
 		<PackageReference Include="Microsoft.Extensions.Logging.Console" Version="10.0.3" />
 		<PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="10.0.3" />
-		<PackageReference Include="Microsoft.Xaml.Behaviors.Wpf" Version="1.1.135" />
+		<PackageReference Include="Microsoft.Xaml.Behaviors.Wpf" Version="1.1.142" />
 	</ItemGroup>
 
 	<ItemGroup>
