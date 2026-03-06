@@ -1,7 +1,6 @@
 ﻿using AMDevIT.AI.Core.Modules.Personality;
 using AMDevIT.AI.UnitTests.Helpers;
 using System.Diagnostics;
-using System.Runtime.CompilerServices;
 
 namespace AMDevIT.AI.UnitTests
 {
